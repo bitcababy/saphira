@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  item_type: MyString
+  file_uid: MyString
+  file_name: MyString
+  slug: MyString
+  path: MyString
+  parent_id: 1
+  lft: 1
+  rgt: 1
+  dynamic_attributes: MyText
+
+two:
+  name: MyString
+  item_type: MyString
+  file_uid: MyString
+  file_name: MyString
+  slug: MyString
+  path: MyString
+  parent_id: 1
+  lft: 1
+  rgt: 1
+  dynamic_attributes: MyText

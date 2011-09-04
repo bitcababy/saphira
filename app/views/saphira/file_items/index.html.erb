@@ -1,0 +1,30 @@
+<h1>Listing <%= @file_item.name %></h1>
+
+<table>
+  <% unless @file_item.id.nil? %>
+  <tr>
+    <td><%= link_to image_tag('saphira/icons/32x32/direction_up.png'), (@file_item.parent || file_items_path) %></td>
+    <td><%= link_to '..', (@file_item.parent || file_items_path) %></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% end %>
+<% @file_items.each do |file_item| %>
+  <tr class="<%= file_item.item_type %> <%= file_item.slug %>">
+    <td><%= link_to image_tag('saphira/icons/32x32/'+file_item.item_type+'.png'), file_item %></td>
+    <td><%= link_to file_item.name, file_item %></td>
+    <td><%= file_item.file.mime_type if file_item.file %></td>
+    <td class="actions"><%= link_to 'Destroy', file_item, confirm: 'Are you sure?', method: :delete, id: "saphira-action-destroy-#{file_item.slug}" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New File', new_file_item_path(:type => Saphira::FileItem::TYPE_FILE, :parent_id => @file_item.id) %>
+<%= link_to 'New Folder', new_file_item_path(:type => Saphira::FileItem::TYPE_FOLDER, :parent_id => @file_item.id) %>
+
+<% unless @file_item.id.nil? %>
+<%= link_to 'Edit', edit_file_item_path(@file_item) %> |
+<%= link_to 'Back', (@file_item.parent || file_items_path) %>
+<% end %>

@@ -1,0 +1,17 @@
+div.information {
+  float: right;
+}
+
+table.key-value {
+  tr {
+    td.key {
+      background-color: #DDDDDD;
+    }
+    td.value {
+      background-color: #EEEEEE;
+    }
+    th {
+      background-color: #DDDDDD;
+    }
+  }
+}
