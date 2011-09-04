@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "A simple file manager created for RoR using mountable engines."
   s.description = "This is a simple file manager created in RoR as a mountable engine. It's created for Railsyard CMS but will also work without it. To use it in RY use ry-filemanager gem."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.0"
