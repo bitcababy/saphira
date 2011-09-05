@@ -14,8 +14,6 @@ Features
 
 To-Do
 -----
-* Link for file download
-* Manage authorizations
 * WebDav access
 * Search files
 
