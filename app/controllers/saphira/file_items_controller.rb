@@ -6,9 +6,6 @@ module Saphira
       @file_item = FileItem.new(:name => 'ROOT')
       @file_items = FileItem.where(:parent_id => nil).all
       
-      p "*"*80
-      p @file_item
-
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @file_items }
