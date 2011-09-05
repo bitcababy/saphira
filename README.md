@@ -24,4 +24,4 @@ Requirements
 
 Installation
 ------------
-Add the gem to your gemfile: `gem 'saphira', :git => 'git://github.com/spieker/saphira.git'` and add `mount Saphira::Engine => "/saphira", :as => 'saphira'` to your `routes.rb` file to mount the engine. The file manager should be available at `http://localhost:3000/saphira` then.
+Add the gem to your gemfile: `gem 'saphira', '~> 0.1.0.beta2'` and add `mount Saphira::Engine => "/saphira", :as => 'saphira'` to your `routes.rb` file to mount the engine. The file manager should be available at `http://localhost:3000/saphira` then.
