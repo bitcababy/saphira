@@ -1,8 +1,17 @@
 PATH
   remote: .
   specs:
-    saphira (0.1.0.beta1)
+    saphira (0.1.0.beta2)
+      acts-as-taggable-on (~> 2.1.0)
+      awesome_nested_set
+      coffee-script
+      dragonfly
+      exifr
+      friendly_id (~> 4.0.0.beta8)
+      jquery-rails
       rails (~> 3.1.0)
+      sass
+      uglifier
 
 GEM
   remote: http://rubygems.org/

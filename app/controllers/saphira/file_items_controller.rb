@@ -8,7 +8,7 @@ module Saphira
       
       respond_to do |format|
         format.html # index.html.erb
-        format.json { render json: @file_items }
+        format.json { render :json => @file_items }
       end
     end
 
@@ -27,7 +27,7 @@ module Saphira
             render
           end
         end
-        format.json { render json: @file_item }
+        format.json { render :json => @file_item }
       end
     end
 
@@ -40,7 +40,7 @@ module Saphira
 
       respond_to do |format|
         format.html { render :action => "new_#{@file_item.item_type}" }
-        format.json { render json: @file_item }
+        format.json { render :json => @file_item }
       end
     end
 
@@ -50,7 +50,7 @@ module Saphira
 
       respond_to do |format|
         format.html { render :action => "edit_#{@file_item.item_type}" }
-        format.json { render json: @file_item }
+        format.json { render :json => @file_item }
       end
     end
 
@@ -61,11 +61,11 @@ module Saphira
 
       respond_to do |format|
         if @file_item.save
-          format.html { redirect_to @file_item, notice: 'File item was successfully created.' }
-          format.json { render json: @file_item, status: :created, location: @file_item }
+          format.html { redirect_to @file_item, :notice => 'File item was successfully created.' }
+          format.json { render :json => @file_item, :status => :created, :location => @file_item }
         else
-          format.html { render action: "new_#{@file_item.item_type}" }
-          format.json { render json: @file_item.errors, status: :unprocessable_entity }
+          format.html { render :action => "new_#{@file_item.item_type}" }
+          format.json { render :json => @file_item.errors, :status => :unprocessable_entity }
         end
       end
     end
@@ -77,11 +77,11 @@ module Saphira
 
       respond_to do |format|
         if @file_item.update_attributes(params[:file_item])
-          format.html { redirect_to @file_item, notice: 'File item was successfully updated.' }
+          format.html { redirect_to @file_item, :notice => 'File item was successfully updated.' }
           format.json { head :ok }
         else
-          format.html { render action: "edit_#{@file_item.item_type}" }
-          format.json { render json: @file_item.errors, status: :unprocessable_entity }
+          format.html { render :action => "edit_#{@file_item.item_type}" }
+          format.json { render :json => @file_item.errors, :status => :unprocessable_entity }
         end
       end
     end

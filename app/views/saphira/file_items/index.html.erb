@@ -14,7 +14,7 @@
     <td><%= link_to image_tag('saphira/icons/32x32/'+file_item.item_type+'.png'), file_item %></td>
     <td><%= link_to file_item.name, file_item %></td>
     <td><%= file_item.file.mime_type if file_item.file %></td>
-    <td class="actions"><%= link_to 'Destroy', file_item, confirm: 'Are you sure?', method: :delete, id: "saphira-action-destroy-#{file_item.slug}" %></td>
+    <td class="actions"><%= link_to 'Destroy', file_item, :confirm => 'Are you sure?', :method => :delete, :id => "saphira-action-destroy-#{file_item.slug}" %></td>
   </tr>
 <% end %>
 </table>
