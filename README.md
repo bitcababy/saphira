@@ -14,13 +14,21 @@ Features
 
 To-Do
 -----
+* Image manipulation
+  * A form helper for image cropping
+  * Multiple named image versions
 * WebDav access
 * Search files
 
 Requirements
 ------------
-* Rails 3.1.x
-* Some gems - check Gemfile
+* [Rails 3.1.x](http://rubyonrails.org/)
+* [dragonfly](https://github.com/markevans/dragonfly/): A Ruby Rack-based gem for on-the-fly processing - suitable for image uploading in Rails, Sinatra and much more! 
+* [awesome\_nested\_set](https://github.com/collectiveidea/awesome_nested_set): An awesome replacement for acts_as_nested_set and better_nested_set.
+* [exifr](https://github.com/remvee/exifr/): EXIF Reader
+* [friendly_id](https://github.com/norman/friendly_id): It allows you to create pretty URL’s and work with human-friendly strings as if they were numeric ids for ActiveRecord models.
+* [acts-as-taggable-on](https://github.com/mbleigh/acts-as-taggable-on): A tagging plugin for Rails applications that allows for custom tagging along dynamic contexts.
+* _And some more gems in development mode_
 
 Installation
 ------------
