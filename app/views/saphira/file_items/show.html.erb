@@ -14,6 +14,7 @@
         <td class="key">Tags</td>
         <td class="value"><%= @file_item.tag_list %></td>
       </tr>
+    <% if @file_item.dynamic_attributes %>
       <tr>
         <th colspan="2">Additional</th>
       </tr>
@@ -23,10 +24,11 @@
         <td class="value"><%= value %></td>
       </tr>
       <% end %>
+    <% end %>
     </table>
   </div>
 
-  <% if @file_item.file_uid %>
+  <% if @file_item.file_uid and @file_item.file.image? %>
   <div class="image">
     <%= image_tag @file_item.file.thumb('300x300').url %>
   </div>

@@ -33,3 +33,14 @@ Feature: Manage file_items
     And I should see "Trash, Orange, Berlin" within ".information"
     And I should see "Canon EOS 550D" within ".information"
     And I should see "Field Image Orientation Transformed" within ".information"
+    
+  Scenario: Upload a text file
+    Given I am on "/admin/saphira/files"
+    And I follow "New File"
+    When I fill in "file_item_name" with "My first text file"
+    And I attach the file "some-text.txt"
+    When I fill in "file_item_tag_list" with "Lorem ipsum"
+    And I press "Create"
+    Then I should be on "/admin/saphira/files/my-first-text-file"
+    And I should see "My first text file" within ".information"
+    And I should see "Lorem ipsum" within ".information"
