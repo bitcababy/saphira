@@ -16,3 +16,22 @@ end
 When /^I attach the file "([^"]*)"$/ do |file|
   attach_file(:file, File.expand_path('../../support/files/'+file, __FILE__))
 end
+
+Then /^I should see an image as (portrait|landscape|square)$/ do |dir|
+  image = find(:css, 'img')
+  assert_not_nil image
+  visit image[:src]
+  data = page.driver.source
+  image = MiniMagick::Image.read(data)
+  
+  case dir
+  when 'portrait'
+    assert(image[:width] < image[:height], 'This is not a portrait image')
+  when 'landscape'
+    assert(image[:width] > image[:height], 'This is not a landscape image')
+  when 'square'
+    assert(image[:width] == image[:height], 'This is not a square image')
+  else
+    raise 'Unknown direction, only portrait and landscape are supported'
+  end
+end

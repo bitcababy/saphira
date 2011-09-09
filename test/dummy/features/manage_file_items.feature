@@ -21,7 +21,7 @@ Feature: Manage file_items
     Then I should see "My second folder"
     And I should not see "My first folder"
 
-  Scenario: Upload an image
+  Scenario: Upload an image which should be rotated automatically
     Given I am on "/admin/saphira/files"
     And I follow "New File"
     When I fill in "file_item_name" with "My first image"
@@ -33,6 +33,7 @@ Feature: Manage file_items
     And I should see "Trash, Orange, Berlin" within ".information"
     And I should see "Canon EOS 550D" within ".information"
     And I should see "Field Image Orientation Transformed" within ".information"
+    And I should see an image as portrait within "#saphira-file-preview"
     
   Scenario: Upload a text file
     Given I am on "/admin/saphira/files"

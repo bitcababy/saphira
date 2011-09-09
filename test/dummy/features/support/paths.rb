@@ -10,6 +10,9 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    when /the new image_variant page/
+      new_image_variant_path
+
     when /the new file_item page/
       new_file_item_path
 

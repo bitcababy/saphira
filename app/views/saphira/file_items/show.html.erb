@@ -29,7 +29,7 @@
   </div>
 
   <% if @file_item.file_uid and @file_item.file.image? %>
-  <div class="image">
+  <div id="saphira-file-preview" class="file preview image">
     <%= image_tag @file_item.file.thumb('300x300').url %>
   </div>
   <% end %>
