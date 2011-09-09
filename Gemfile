@@ -41,4 +41,5 @@ group :development, :test do
   gem 'factory_girl'
   gem 'railroady'
   gem 'pry'
+  gem 'mini_magick'
 end
