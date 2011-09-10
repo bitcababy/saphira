@@ -77,7 +77,7 @@ module Saphira
 
       respond_to do |format|
         if @file_item.update_attributes(params[:file_item])
-          format.html { redirect_to @file_item, :notice => 'File item was successfully updated.' }
+          format.html { redirect_to (params[:redirect_to] || @file_item), :notice => 'File item was successfully updated.' }
           format.json { head :ok }
         else
           format.html { render :action => "edit_#{@file_item.item_type}" }

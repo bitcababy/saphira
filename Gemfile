@@ -22,6 +22,7 @@ gem 'sass'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'
+gem 'mini_magick'
 
 group :development, :test do	
   gem 'rspec', '>= 2.5.0'
@@ -41,5 +42,4 @@ group :development, :test do
   gem 'factory_girl'
   gem 'railroady'
   gem 'pry'
-  gem 'mini_magick'
 end

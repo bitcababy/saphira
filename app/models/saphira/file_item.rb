@@ -9,6 +9,9 @@ module Saphira
     
     validates_presence_of :name
     validates_uniqueness_of :name, :scope => :parent_id
+    before_validation do
+      self.name = self.file_name if self.name.blank?
+    end
     
     acts_as_nested_set
     friendly_id :name, :use => :scoped, :scope => :parent_id
@@ -16,12 +19,20 @@ module Saphira
     file_accessor :file do
         after_assign do |img|
           if (img.image?)
+            # set the mime type
             case img.mime_type
             when 'image/jpeg'
               exifr = EXIFR::JPEG.new(img.path.to_s)
             when 'image/tiff'
               exifr = EXIFR::TIFF.new(img.path.to_s)
             end
+            
+            # set the size, this can be refactured using dragonfly if the with method
+            # of the analyzer is fixed (see https://github.com/markevans/dragonfly/issues/122)
+            mm_image = MiniMagick::Image.open(img.path)
+            self.field_width = mm_image[:width]
+            self.field_height = mm_image[:height]
+            
             # http://www.dcresource.com/reviews/exif_key.html
             if exifr
               self.attr_set :field_image_capture_date, exifr.date_time_original
@@ -74,6 +85,38 @@ module Saphira
     def attr_get(name)
       self.dynamic_attributes ||= {}
       self.dynamic_attributes[name.to_sym]
+    end
+    
+    def image_variant(id)
+      raise "the given file is no image" unless file.image?
+      variant = ImageVariant.find(id)
+      raise "no variant with id #{id} found" unless variant
+      file.manipulate(self.pre_manipulation(id) + ' ' + variant.manipulation)
+    end
+    
+    def pre_manipulation(id)
+      self.attr_get("pre_manipulation_#{id}") || ''
+    end
+    
+    def method_missing(method_name, *args, &block)  
+      case method_name
+      when /^field_([a-zA-Z0-9_]+)$/
+        attr_get($1)
+      when /^field_([a-zA-Z0-9_]+)=$/
+        attr_set($1, args[0])
+      else
+        super
+      end
+    end
+
+    # Overrides update_attributes to take dynamic attributes into account
+    def update_attributes(attributes)  
+      attributes.each do |key, value|
+        if key.match(/^field_([a-zA-Z0-9_]+)$/)
+          attr_set($1, attributes.delete(key))
+        end
+      end
+      super(attributes)
     end
     
     def to_param

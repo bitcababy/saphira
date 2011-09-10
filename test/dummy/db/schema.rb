@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904172952) do
+ActiveRecord::Schema.define(:version => 20110909143951) do
 
   create_table "saphira_file_items", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20110904172952) do
   add_index "saphira_file_items", ["path"], :name => "index_saphira_file_items_on_path", :unique => true
   add_index "saphira_file_items", ["rgt"], :name => "index_saphira_file_items_on_rgt"
   add_index "saphira_file_items", ["slug"], :name => "index_saphira_file_items_on_slug"
+
+  create_table "saphira_image_variants", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "manipulation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
