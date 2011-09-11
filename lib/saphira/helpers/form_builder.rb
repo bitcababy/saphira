@@ -5,10 +5,11 @@ module Saphira
     
       def saphira_image_crop(method, *args)
         options = {
-          :image_size     => 'x300',
-          :id             => "#{@object_name}_#{method}",
-          :object         => object,
-          :file_attribute => :file
+          :image_size         => 'x300',
+          :id                 => "#{@object_name}_#{method}",
+          :object             => object,
+          :file_attribute     => :file,
+          :force_aspect_ratio => false
         }.merge(args.extract_options!)
         @template.send("saphira_image_crop", @object_name, method, objectify_options(options))
       end

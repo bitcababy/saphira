@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <%= f.saphira_image_crop "field_pre_manipulation_#{params[:id]}".to_sym %>
+  <%= f.saphira_image_crop "field_pre_manipulation_#{params[:id]}".to_sym, :aspect_ratio => (@file_item.image_variant(params[:id]).width.to_f/@file_item.image_variant(params[:id]).height.to_f)%>
   <div class="actions">
     <%= hidden_field_tag :redirect_to, file_item_image_variant_setting_path(@file_item, params[:id]) %>
     <%= f.submit 'update' %>
