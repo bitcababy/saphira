@@ -9,8 +9,8 @@ module Saphira
       def saphira_image_crop(object_name, method, options = {})
         image = options[:object].send(options[:file_attribute].to_sym)
         
-        value = options[:object].send(method.to_sym)
-        mult = image.height.to_f/image.thumb(options[:image_size]).height.to_f
+        value = (options.has_key?(:value)) ? options[:value] : options[:object].send(method.to_sym)
+        mult  = image.height.to_f/image.thumb(options[:image_size]).height.to_f
         width = height = left = top = 0
         value, width, height, left, top = value.match(/(\d+)x(\d+)\+(\d+)\+(\d+)/).to_a.map{|i| (i.to_f/mult).round } unless value.blank?
         
@@ -19,7 +19,9 @@ module Saphira
         jcrop_options = []
         jcrop_options << "onChange: #{options[:id]}_showCoords"
         jcrop_options << "onSelect: #{options[:id]}_showCoords"
-        jcrop_options << "setSelect: [#{left}, #{top}, #{left+width}, #{top+height} ]" unless width==0 and height==0
+        if !width.nil? and !height.nil? and !left.nil? and !top.nil? and width!=0 and height!=0
+          jcrop_options << "setSelect: [#{left}, #{top}, #{left+width}, #{top+height} ]"
+        end
         jcrop_options << "aspectRatio: #{options[:aspect_ratio]}" if options[:aspect_ratio]
         js_buffer << <<-JAVASCRIPT
           jQuery(function() {
@@ -40,7 +42,7 @@ module Saphira
           }
         JAVASCRIPT
         
-        unless options[:aspect_ratio]>0 and options[:force_asprct_ratio]
+        if options[:aspect_ratio]>0 and !options[:force_asprct_ratio]
           output_buffer << <<-HTML.html_safe
             <input type="checkbox" id="#{options[:id]}_aspect_ratio_toggle" checked="checked" />
             <label for="#{options[:id]}_aspect_ratio_toggle">#{t 'saphira.general.use_target_aspect_ratio', :default => 'Use target aspect ratio'}</label>
