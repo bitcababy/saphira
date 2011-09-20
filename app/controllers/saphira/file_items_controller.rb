@@ -43,6 +43,12 @@ module Saphira
         format.json { render :json => @file_item }
       end
     end
+    
+    def upload_files
+      respond_to do |format|
+        format.html { }
+      end
+    end
 
     # GET /file_items/1/edit
     def edit
@@ -57,6 +63,7 @@ module Saphira
     # POST /file_items
     # POST /file_items.json
     def create
+      params[:file_item][:parent_id] = nil if params[:file_item][:parent_id].blank?
       @file_item = FileItem.new(params[:file_item])
 
       respond_to do |format|

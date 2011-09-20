@@ -23,6 +23,7 @@
 
 <%= link_to 'New File', new_file_item_path(:type => Saphira::FileItem::TYPE_FILE, :parent_id => @file_item.id) %>
 <%= link_to 'New Folder', new_file_item_path(:type => Saphira::FileItem::TYPE_FOLDER, :parent_id => @file_item.id) %>
+<%= link_to 'Upload Files', upload_file_items_path(:parent_id => @file_item.id) %>
 
 <% unless @file_item.id.nil? %>
 <%= link_to 'Edit', edit_file_item_path(@file_item) %> |
