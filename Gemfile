@@ -24,8 +24,6 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem 'mini_magick'
 
-gem 'dragonfly-rmagick', :git => 'git://github.com/markevans/dragonfly-rmagick.git'
-
 group :development, :test do	
   gem 'rspec', '>= 2.5.0'
   gem 'rspec-rails', '>= 2.5.0'
