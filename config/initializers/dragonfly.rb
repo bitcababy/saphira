@@ -1,6 +1,8 @@
 require 'dragonfly/rails/images'
+require 'dragonfly-rmagick'
 
 DRAGONFLY_APP = Dragonfly[:images]
+DRAGONFLY_APP.configure_with(:rmagick)
 
 app = DRAGONFLY_APP
 app.datastore.root_path = ::Rails.root.join('system/files', ::Rails.env).to_s
