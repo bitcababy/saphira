@@ -23,6 +23,7 @@ gem 'coffee-script'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'mini_magick'
+gem 'dragonfly-minimagick', :git => 'git://github.com/spieker/dragonfly-minimagick.git'
 
 group :development, :test do	
   gem 'rspec', '>= 2.5.0'
