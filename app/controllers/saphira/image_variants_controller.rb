@@ -3,7 +3,7 @@ module Saphira
     # GET /image_variants
     # GET /image_variants.json
     def index
-      @image_variants = ImageVariant.all
+      @image_variants = ImageVariant.cs(self.current_scope).all
   
       respond_to do |format|
         format.html # index.html.erb
@@ -14,7 +14,7 @@ module Saphira
     # GET /image_variants/1
     # GET /image_variants/1.json
     def show
-      @image_variant = ImageVariant.find(params[:id])
+      @image_variant = ImageVariant.cs(self.current_scope).find(params[:id])
   
       respond_to do |format|
         format.html # show.html.erb
@@ -25,7 +25,7 @@ module Saphira
     # GET /image_variants/new
     # GET /image_variants/new.json
     def new
-      @image_variant = ImageVariant.new
+      @image_variant = ImageVariant.cs(self.current_scope).new
   
       respond_to do |format|
         format.html # new.html.erb
@@ -35,13 +35,13 @@ module Saphira
   
     # GET /image_variants/1/edit
     def edit
-      @image_variant = ImageVariant.find(params[:id])
+      @image_variant = ImageVariant.cs(self.current_scope).find(params[:id])
     end
   
     # POST /image_variants
     # POST /image_variants.json
     def create
-      @image_variant = ImageVariant.new(params[:image_variant])
+      @image_variant = ImageVariant.cs(self.current_scope).new(params[:image_variant])
   
       respond_to do |format|
         if @image_variant.save
@@ -57,7 +57,7 @@ module Saphira
     # PUT /image_variants/1
     # PUT /image_variants/1.json
     def update
-      @image_variant = ImageVariant.find(params[:id])
+      @image_variant = ImageVariant.cs(self.current_scope).find(params[:id])
   
       respond_to do |format|
         if @image_variant.update_attributes(params[:image_variant])
@@ -73,7 +73,7 @@ module Saphira
     # DELETE /image_variants/1
     # DELETE /image_variants/1.json
     def destroy
-      @image_variant = ImageVariant.find(params[:id])
+      @image_variant = ImageVariant.cs(self.current_scope).find(params[:id])
       @image_variant.destroy
   
       respond_to do |format|
