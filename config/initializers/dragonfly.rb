@@ -4,7 +4,6 @@ DRAGONFLY_APP = Dragonfly[:images]
 
 app = DRAGONFLY_APP
 app.datastore.root_path = ::Rails.root.join('system/files', ::Rails.env).to_s
-MiniMagick.processor = :gm
 app.configure_with(:minimagick)
 
 app.configure do |c|
@@ -19,9 +18,7 @@ end
 
 # execute manipulation string
 app.job :manipulate do |manipulations|
-  p manipulations
   manipulations.split(' ').each do |manipulation|
-    p manipulation
     process :thumb, manipulation
   end
 end

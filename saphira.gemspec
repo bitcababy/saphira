@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'uglifier'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'mini_magick'
+  s.add_dependency 'dragonfly-minimagick'
   
   s.add_development_dependency 'cucumber', '>= 0.10.2'
   s.add_development_dependency 'cucumber-rails', '>= 0.4.1'
