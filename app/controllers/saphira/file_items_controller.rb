@@ -3,8 +3,8 @@ module Saphira
     # GET /file_items
     # GET /file_items.json
     def index
-      @file_item = FileItem.new(:name => 'ROOT')
-      @file_items = FileItem.where(:parent_id => nil).all
+      @file_item = FileItem.cs(self.current_scope).new(:name => 'ROOT')
+      @file_items = FileItem.cs(self.current_scope).where(:parent_id => nil).all
       
       respond_to do |format|
         format.html # index.html.erb
@@ -15,7 +15,7 @@ module Saphira
     # GET /file_items/1
     # GET /file_items/1.json
     def show
-      @file_item = FileItem.find_by_path(params[:id])
+      @file_item = FileItem.cs(self.current_scope).find_by_path(params[:id])
 
       respond_to do |format|
         format.html do
@@ -34,7 +34,7 @@ module Saphira
     # GET /file_items/new
     # GET /file_items/new.json
     def new
-      @file_item = FileItem.new
+      @file_item = FileItem.cs(self.current_scope).new
       @file_item.item_type = params[:type]
       @file_item.parent_id = params[:parent_id]
 
@@ -52,7 +52,7 @@ module Saphira
 
     # GET /file_items/1/edit
     def edit
-      @file_item = FileItem.find_by_path(params[:id])
+      @file_item = FileItem.cs(self.current_scope).find_by_path(params[:id])
 
       respond_to do |format|
         format.html { render :action => "edit_#{@file_item.item_type}" }
@@ -64,7 +64,7 @@ module Saphira
     # POST /file_items.json
     def create
       params[:file_item][:parent_id] = nil if params[:file_item][:parent_id].blank?
-      @file_item = FileItem.new(params[:file_item])
+      @file_item = FileItem.cs(self.current_scope).new(params[:file_item])
 
       respond_to do |format|
         if @file_item.save
@@ -80,7 +80,7 @@ module Saphira
     # PUT /file_items/1
     # PUT /file_items/1.json
     def update
-      @file_item = FileItem.find_by_path(params[:id])
+      @file_item = FileItem.cs(self.current_scope).find_by_path(params[:id])
 
       respond_to do |format|
         if @file_item.update_attributes(params[:file_item])
@@ -96,7 +96,7 @@ module Saphira
     # DELETE /file_items/1
     # DELETE /file_items/1.json
     def destroy
-      @file_item = FileItem.find_by_path(params[:id])
+      @file_item = FileItem.cs(self.current_scope).find_by_path(params[:id])
       @file_item.destroy
 
       respond_to do |format|

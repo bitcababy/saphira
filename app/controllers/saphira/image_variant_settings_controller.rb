@@ -3,8 +3,8 @@ module Saphira
     # GET /file_items/1/image_variant_settings/1
     # GET /file_items/1/image_variant_settings/1.json
     def show
-      @file_item = FileItem.find_by_path(params[:file_item_id])
-      @image_variant = ImageVariant.find(params[:id])
+      @file_item = FileItem.cs(self.current_scope).find_by_path(params[:file_item_id])
+      @image_variant = ImageVariant.cs(self.current_scope).find(params[:id])
 
       respond_to do |format|
         format.html { }
@@ -14,7 +14,7 @@ module Saphira
 
     # GET /file_items/1/image_variant_settings/1/edit
     def edit
-      @file_item = FileItem.find_by_path(params[:file_item_id])
+      @file_item = FileItem.cs(self.current_scope).find_by_path(params[:file_item_id])
 
       respond_to do |format|
         format.html { }
@@ -25,7 +25,7 @@ module Saphira
     # PUT /file_items/1/image_variant_settings/1
     # PUT /file_items/1/image_variant_settings/1.json
     def update
-      @file_item = FileItem.find_by_path(params[:file_item_id])
+      @file_item = FileItem.cs(self.current_scope).find_by_path(params[:file_item_id])
 
       respond_to do |format|
         if @file_item.update_attributes(params[:file_item])

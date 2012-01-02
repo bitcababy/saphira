@@ -65,7 +65,7 @@ module Saphira
     end
     
     belongs_to :user
-    
+
     # generate the path of this item, to find it easier
     before_save do
       parent = self.parent
@@ -74,6 +74,10 @@ module Saphira
       else
         self.path = self.slug
       end
+    end
+
+    def self.cs(scope)
+      where(:record_scope => scope)
     end
 
     def attr_set(name, value)
